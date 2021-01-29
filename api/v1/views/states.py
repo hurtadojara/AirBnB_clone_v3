@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 """State objects that handles all default RestFul API actions
 """
-from console import *
 from models import storage
-from models.state import State 
+from models.state import State
 from flask import Flask, jsonify, abort, request
 from api.v1.views import app_views
+
 
 @app_views.route("/states", methods=["GET"], strict_slashes=False)
 def states():
     """ route from states"""
     obj_dict = storage.all("State")
     return jsonify([state.to_dict() for state in obj_dict.values()])
+
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
@@ -35,9 +36,11 @@ def get_state(state_id):
     else:
         abort(404)
 
-@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+
+@app_views.route('/states/<state_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def del_state(state_id):
-    """ """
+    """method to delete a state based on its id """
     state = storage.get(State, state_id)
     if not state:
         abort(404)
@@ -45,6 +48,7 @@ def del_state(state_id):
         storage.delete(state)
         storage.save()
     return jsonify({}), 200
+
 
 @app_views.route("/states/<state_id>", methods=["PUT"], strict_slashes=False)
 def up_state(state_id):
