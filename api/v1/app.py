@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 ''' our first API '''
 
 from flask import Flask, jsonify, make_response
