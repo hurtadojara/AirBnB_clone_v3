@@ -12,6 +12,7 @@ port = getenv('HBNB_API_PORT')
 app = Flask(__name__)
 app.register_blueprint(app_views)
 
+
 @app.errorhandler(404)
 def error_404(error):
     """Handling 404 error with JSON"""
@@ -29,4 +30,4 @@ if __name__ == "__main__":
         host = '0.0.0.0'
     if not port:
         port = 5000
-    app.run(host=host, debug=True ,port=port, threaded=True)
+    app.run(host=host, debug=True, port=port, threaded=True)
