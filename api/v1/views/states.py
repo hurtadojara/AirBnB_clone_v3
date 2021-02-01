@@ -52,7 +52,7 @@ def del_state(state_id):
 
 @app_views.route("/states/<state_id>", methods=["PUT"], strict_slashes=False)
 def up_state(state_id):
-    """Create a State object"""
+    """Update a State object"""
     if request.get_json() is None:
         return "Not a JSON", 400
     state = storage.get(State, state_id)
